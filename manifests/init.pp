@@ -122,7 +122,6 @@ class pam (
     mode    => $pam::config_file_mode,
     owner   => $pam::config_file_owner,
     group   => $pam::config_file_group,
-    require => Package[$pam::package],
     source  => $pam::manage_file_source,
     content => $pam::manage_file_content,
     replace => $pam::manage_file_replace,
@@ -135,7 +134,6 @@ class pam (
     file { 'pam.dir':
       ensure  => directory,
       path    => $pam::config_dir,
-      require => Package[$pam::package],
       source  => $pam::source_dir,
       recurse => true,
       purge   => $pam::bool_source_dir_purge,
