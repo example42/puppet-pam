@@ -7,24 +7,11 @@ describe 'pam' do
   let(:facts) { { :ipaddress => '10.42.42.42' } }
 
   describe 'Test minimal installation' do
-    it { should contain_package('pam').with_ensure('present') }
     it { should contain_file('pam.conf').with_ensure('present') }
-  end
-
-  describe 'Test installation of a specific version' do
-    let(:params) { {:version => '1.0.42' } }
-    it { should contain_package('pam').with_ensure('1.0.42') }
-  end
-
-  describe 'Test decommissioning - absent' do
-    let(:params) { {:absent => true } }
-    it 'should remove Package[pam]' do should contain_package('pam').with_ensure('absent') end 
-    it 'should remove pam configuration file' do should contain_file('pam.conf').with_ensure('absent') end
   end
 
   describe 'Test noops mode' do
     let(:params) { {:noops => true} }
-    it { should contain_package('pam').with_noop('true') }
     it { should contain_file('pam.conf').with_noop('true') }
   end
 
