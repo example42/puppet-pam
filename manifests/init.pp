@@ -50,7 +50,7 @@
 # [*noops*]
 #   Set noop metaparameter to true for all the resources managed by the module.
 #   Basically you can run a dryrun for this specific module if you set
-#   this to true. Default: false
+#   this to true. Default: undef
 #
 # Default class params - As defined in pam::params.
 # Note that these variables are mostly defined and used in the module itself,
@@ -92,7 +92,6 @@ class pam (
 
   $bool_source_dir_purge=any2bool($source_dir_purge)
   $bool_audit_only=any2bool($audit_only)
-  $bool_noops=any2bool($noops)
 
   ### Definition of some variables used in the module
   $manage_audit = $pam::bool_audit_only ? {
@@ -126,7 +125,7 @@ class pam (
     content => $pam::manage_file_content,
     replace => $pam::manage_file_replace,
     audit   => $pam::manage_audit,
-    noop    => $pam::bool_noops,
+    noop    => $pam::noops,
   }
 
   # The whole pam configuration directory can be recursively overriden
@@ -140,7 +139,7 @@ class pam (
       force   => $pam::bool_source_dir_purge,
       replace => $pam::manage_file_replace,
       audit   => $pam::manage_audit,
-      noop    => $pam::bool_noops,
+      noop    => $pam::noops,
     }
   }
 
