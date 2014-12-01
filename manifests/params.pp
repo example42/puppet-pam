@@ -45,5 +45,6 @@ class pam::params {
   $options = ''
   $audit_only = false
   $noops = undef
+  $configs = {}
 
 }

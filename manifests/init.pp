@@ -83,7 +83,8 @@ class pam (
   $audit_only          = params_lookup( 'audit_only' , 'global' ),
   $noops               = params_lookup( 'noops' ),
   $config_dir          = params_lookup( 'config_dir' ),
-  $config_file         = params_lookup( 'config_file' )
+  $config_file         = params_lookup( 'config_file' ),
+  $configs             = params_lookup( 'configs' )
   ) inherits pam::params {
 
   $config_file_mode=$pam::params::config_file_mode
@@ -143,6 +144,11 @@ class pam (
     }
   }
 
+  ### Create instances for integration with Hiera
+  if $configs != {} {
+    validate_hash($configs)
+    create_resources(pam::config, $configs)
+  }
 
   ### Include custom class if $my_class is set
   if $pam::my_class {
