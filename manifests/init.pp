@@ -134,6 +134,8 @@ class pam (
     file { 'pam.dir':
       ensure  => directory,
       path    => $pam::config_dir,
+      owner   => $pam::config_dir_owner,
+      group   => $pam::config_dir_group,
       source  => $pam::source_dir,
       recurse => true,
       purge   => $pam::bool_source_dir_purge,
