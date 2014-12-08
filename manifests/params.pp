@@ -36,6 +36,14 @@ class pam::params {
     default => 'root',
   }
 
+  $config_dir_owner = $::operatingsystem ? {
+    default => 'root',
+  }
+
+  $config_dir_group = $::operatingsystem ? {
+    default => 'root',
+  }
+
   # General Settings
   $my_class = ''
   $source = ''
