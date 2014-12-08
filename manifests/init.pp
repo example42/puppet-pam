@@ -90,6 +90,8 @@ class pam (
   $config_file_mode=$pam::params::config_file_mode
   $config_file_owner=$pam::params::config_file_owner
   $config_file_group=$pam::params::config_file_group
+  $config_dir_owner=$pam::params::config_dir_owner
+  $config_dir_group=$pam::params::config_dir_group
 
   $bool_source_dir_purge=any2bool($source_dir_purge)
   $bool_audit_only=any2bool($audit_only)
